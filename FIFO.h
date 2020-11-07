@@ -172,7 +172,20 @@ extern "C" {
 	 */
 	bool fifo_get(fifo_t fifo, void * item);
 
-	/**
+    /**
+	 * @brief Get the data in the FIFO, but do not actually take out the data
+	 *
+	 * 
+	 * @param fifo Pointer to a fifo_descriptor structure.
+	 * @param item Pointer to a location to hold the data read from the fifo buffer,
+	 * this buffer should be sized appropiately to accomodate the data.
+	 * 
+	 * @return  Returns true if there is data available on the fifo buffer to be
+	 * copied, if the buffer is empty and no data can be read this returns false.
+	 */
+    bool fifo_peek(fifo_t fifo, void *item);
+
+    /**
 	 * @brief Checks if the FIFO is full.
 	 *
 	 * Check if it can accept one item at least.
@@ -181,9 +194,9 @@ extern "C" {
 	 *
 	 * @return This function returns true if the buffer is full, false otherwise.
 	 */
-	bool fifo_is_full(fifo_t fifo);
+    bool fifo_is_full(fifo_t fifo);
 
-	/**
+    /**
 	 * @brief Checks if the FIFO is empty.
 	 *
 	 * Check if the buffer has no data stored in it.

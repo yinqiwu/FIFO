@@ -95,6 +95,19 @@ bool fifo_get(fifo_t fifo, void * item)
 	}
 }
 
+bool fifo_peek(fifo_t fifo, void *item)
+{
+    if (!fifo_is_empty(fifo))
+    {
+        memcpy(item, fifo->itemspace + fifo->readoffset, fifo->itemsize);
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
 bool fifo_is_full(fifo_t fifo)
 {
 	if (fifo->storedbytes >= fifo->allocatedbytes)
