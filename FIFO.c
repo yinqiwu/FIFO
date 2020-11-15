@@ -124,6 +124,10 @@ bool fifo_is_empty(fifo_t fifo)
 		return false;
 }
 
+int fifo_getItemSize(fifo_t fifo){
+    return fifo->storedbytes;
+}
+
 bool fifo_discard(fifo_t fifo, uint16_t count, enum fifo_side side)
 {
 	uint16_t t;
@@ -140,6 +144,14 @@ bool fifo_discard(fifo_t fifo, uint16_t count, enum fifo_side side)
 		return true;
 	}
 	return false;
+}
+
+bool fifo_clear(fifo_t fifo){
+    int size = fifo_getItemSize(fifo);
+	if(size >0){
+        return fifo_discard(fifo, size, E_FIFO_FRONT);
+    }
+    return false;
 }
 
 static void fifo_copy_from(fifo_t fifo, void * item)

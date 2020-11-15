@@ -205,9 +205,29 @@ extern "C" {
 	 *
 	 * @return This function returns true if the buffer is empty, false otherwise.
 	 */
-	bool fifo_is_empty(fifo_t fifo);
+    bool fifo_is_empty(fifo_t fifo);
 
-	/**
+    /**
+	 * @brief Get the data length cached in fifo
+	 *
+	 *
+	 * @param fifo Pointer to a fifo_descriptor structure.
+	 *
+	 * @return Returns the length of the data cached in fifo.
+	 */
+    int fifo_getItemSize(fifo_t fifo);
+
+    /**
+	 * @brief Discard the data in the buffer
+	 *
+	 *
+	 * @param fifo Pointer to a fifo_descriptor structure.
+	 *
+	 * @return return true if the cache data have discard,false is not.
+	 */
+    bool fifo_clear(fifo_t fifo);
+
+    /**
 	 * @brief Discard data from the buffer.
 	 *
 	 * This function discards data from the back or the front side of the buffer,
@@ -221,6 +241,8 @@ extern "C" {
 	 * @return Returns true if the data was discarted, false if not.
 	 */
 	bool fifo_discard(fifo_t fifo, uint16_t count, enum fifo_side side);
+
+	
 
 #ifdef __cplusplus
 }
