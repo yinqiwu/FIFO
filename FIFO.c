@@ -149,7 +149,10 @@ bool fifo_discard(fifo_t fifo, uint16_t count, enum fifo_side side)
 bool fifo_clear(fifo_t fifo){
     int size = fifo_getItemSize(fifo);
 	if(size >0){
-        return fifo_discard(fifo, size, E_FIFO_FRONT);
+        fifo->readoffset = 0;
+        fifo->writeoffset = 0;
+        fifo->storedbytes = 0;
+        return true;
     }
     return false;
 }
